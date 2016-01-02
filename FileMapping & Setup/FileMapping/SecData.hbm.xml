@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2015 1:01:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.dotosoft.server.dotoquiz.model.SecData" table="sec_data" catalog="dotoquiz" optimistic-lock="version">
+        <id name="userid" type="string">
+            <column name="userid" length="50" />
+            <generator class="foreign">
+                <param name="property">secUser</param>
+            </generator>
+        </id>
+        <many-to-one name="mtCountry" class="com.dotosoft.server.dotoquiz.model.MtCountry" fetch="select">
+            <column name="country" length="50" />
+        </many-to-one>
+        <one-to-one name="secUser" class="com.dotosoft.server.dotoquiz.model.SecUser" constrained="true"></one-to-one>
+        <property name="username" type="string">
+            <column name="username" length="100" />
+        </property>
+        <property name="imageUrl" type="string">
+            <column name="image_url" length="200" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="200" />
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" />
+        </property>
+        <property name="exp" type="java.lang.Long">
+            <column name="exp" />
+        </property>
+    </class>
+</hibernate-mapping>

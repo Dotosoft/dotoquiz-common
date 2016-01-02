@@ -1,0 +1,29 @@
+-- Checking Your Database’s State
+-- java -jar hello-world.jar db status helloworld.yml
+
+-- Dumping Your Schema
+-- java -jar hello-world.jar db dump helloworld.yml
+
+-- Tagging Your Schema
+-- java -jar hello-world.jar db tag helloworld.yml 2012-10-08-pre-user-move
+
+-- Migrating Your Schema
+-- java -jar hello-world.jar db migrate helloworld.yml
+
+-- Rolling Back Your Schema
+-- java -jar hello-world.jar db rollback helloworld.yml --tag 2012-10-08-pre-user-move
+
+-- Testing Migrations
+-- java -jar hello-world.jar db test helloworld.yml
+
+-- Preparing A Rollback Script
+-- java -jar hello-world.jar db prepare-rollback helloworld.yml
+
+-- Generating Documentation
+-- java -jar hello-world.jar db generate-docs helloworld.yml ~/db-docs/
+
+-- Dropping All Objects
+-- java -jar hello-world.jar db drop-all --confirm-delete-everything helloworld.yml
+
+-- Fast-Forwarding Through A Changeset
+-- java -jar hello-world.jar db fast-forward helloworld.yml

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2015 1:01:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.dotosoft.server.dotoquiz.model.SosPostingsLikes" table="sos_postings_likes" catalog="dotoquiz" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="secUser" class="com.dotosoft.server.dotoquiz.model.SecUser" fetch="select">
+            <column name="userId" length="50" />
+        </many-to-one>
+        <many-to-one name="sosPostings" class="com.dotosoft.server.dotoquiz.model.SosPostings" fetch="select">
+            <column name="postingId" length="50" />
+        </many-to-one>
+        <property name="isDelete" type="string">
+            <column name="is_delete" length="1" />
+        </property>
+        <property name="createdDt" type="timestamp">
+            <column name="created_dt" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

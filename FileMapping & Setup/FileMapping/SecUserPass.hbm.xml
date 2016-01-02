@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 8, 2015 1:01:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.dotosoft.server.dotoquiz.model.SecUserPass" table="sec_user_pass" catalog="dotoquiz" optimistic-lock="version">
+        <id name="userId" type="string">
+            <column name="userId" length="50" />
+            <generator class="foreign">
+                <param name="property">secUser</param>
+            </generator>
+        </id>
+        <one-to-one name="secUser" class="com.dotosoft.server.dotoquiz.model.SecUser" constrained="true"></one-to-one>
+        <property name="oauthType" type="string">
+            <column name="oauth_type" length="45" />
+        </property>
+        <property name="oauthId" type="string">
+            <column name="oauth_id" length="45" />
+        </property>
+        <property name="oauthSecret" type="string">
+            <column name="oauth_secret" length="45" />
+        </property>
+        <property name="registerIp" type="string">
+            <column name="register_ip" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>
