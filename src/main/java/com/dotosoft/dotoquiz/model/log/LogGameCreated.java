@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,15 +19,18 @@ public class LogGameCreated {
 	protected String id;
 
 	@ManyToOne
+	@JoinColumn(name="topicId")
 	protected DataTopics topicId;
 
 	@Column(name = "roomId", length = 50)
 	protected String roomId;
 
 	@ManyToOne
+	@JoinColumn(name="userA")
 	protected SecurityUser userA;
 
 	@ManyToOne
+	@JoinColumn(name="userB")
 	protected SecurityUser userB;
 
 	@Column(name = "created_dt")

@@ -21,7 +21,8 @@ public class DotoQuizConstant {
 	public static final String NO = "N";
 	public static final String SYSTEM_USER = "system";
 	
-	public static final String[] ROLE_DEFAULTS = {"player"};
+	public static final String ROLE_USER_PLAYER = "player";
+	public static final String[] ROLE_DEFAULTS = { DotoQuizConstant.ROLE_USER_PLAYER };
 	
 	public static final String STATUS_USER_ACTIVE = "ACTIVE";
 	public static final String STATUS_USER_LOCKED = "LOCKED";
