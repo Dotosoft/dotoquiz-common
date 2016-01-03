@@ -7,26 +7,26 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sec_user_pass", catalog="dotoquiz")
+@Table(name = "sec_user_pass", catalog = "dotoquiz")
 public class SecurityUserPass implements java.io.Serializable {
 
 	@Id
 	protected String userId;
-	
+
 	@OneToOne
 	protected SecurityUser secUser;
-	
-	@Column(name="oauth_type", length=45)
-	protected String oauthType;
-	
-	@Column(name="oauth_id", length=45)
-	protected String oauthId;
-	
-	@Column(name="oauth_secret", length=45)
-	protected String oauthSecret;
-	
-	@Column(name="register_ip", length=100)
+
+	@Column(name = "register_ip", length = 100)
 	protected String registerIp;
+
+	@Column(name = "refresh_token", length = 50)
+	protected String refreshToken;
+
+	@Column(name = "oauth_id", length = 50)
+	protected String oauthId;
+
+	@Column(name = "oauth_type", length = 50)
+	protected String oauthType;
 
 	public SecurityUserPass() {
 	}
@@ -35,17 +35,17 @@ public class SecurityUserPass implements java.io.Serializable {
 		this.secUser = secUser;
 	}
 
-	public SecurityUserPass(SecurityUser secUser, String oauthType, String oauthId,
-			String oauthSecret, String registerIp) {
+	public SecurityUserPass(SecurityUser secUser, String oauthType,
+			String oauthId, String refreshToken, String registerIp) {
 		this.secUser = secUser;
 		this.oauthType = oauthType;
 		this.oauthId = oauthId;
-		this.oauthSecret = oauthSecret;
+		this.refreshToken = refreshToken;
 		this.registerIp = registerIp;
 	}
 
 	public String getUserId() {
-		return this.userId;
+		return userId;
 	}
 
 	public void setUserId(String userId) {
@@ -53,43 +53,51 @@ public class SecurityUserPass implements java.io.Serializable {
 	}
 
 	public SecurityUser getSecUser() {
-		return this.secUser;
+		return secUser;
 	}
 
 	public void setSecUser(SecurityUser secUser) {
 		this.secUser = secUser;
 	}
 
-	public String getOauthType() {
-		return this.oauthType;
+	public String getRegisterIp() {
+		return registerIp;
 	}
 
-	public void setOauthType(String oauthType) {
-		this.oauthType = oauthType;
+	public void setRegisterIp(String registerIp) {
+		this.registerIp = registerIp;
+	}
+
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
 	}
 
 	public String getOauthId() {
-		return this.oauthId;
+		return oauthId;
 	}
 
 	public void setOauthId(String oauthId) {
 		this.oauthId = oauthId;
 	}
 
-	public String getOauthSecret() {
-		return this.oauthSecret;
+	public String getOauthType() {
+		return oauthType;
 	}
 
-	public void setOauthSecret(String oauthSecret) {
-		this.oauthSecret = oauthSecret;
+	public void setOauthType(String oauthType) {
+		this.oauthType = oauthType;
 	}
 
-	public String getRegisterIp() {
-		return this.registerIp;
-	}
-
-	public void setRegisterIp(String registerIp) {
-		this.registerIp = registerIp;
+	@Override
+	public String toString() {
+		return "SecurityUserPass [userId=" + userId + ", secUser=" + secUser
+				+ ", registerIp=" + registerIp + ", refreshToken="
+				+ refreshToken + ", oauthId=" + oauthId + ", oauthType="
+				+ oauthType + "]";
 	}
 
 }

@@ -20,4 +20,6 @@ public class DotoQuizConstant {
 	public static final String YES = "Y";
 	public static final String NO = "N";
 	public static final String SYSTEM_USER = "system";
+	
+	public static final String[] ROLE_DEFAULTS = {"player"};
 }

@@ -35,20 +35,24 @@ public class LogGameCreated {
 	@Column(name = "updated_dt")
 	protected Date updatedDt;
 
+	@Column(name = "question_data")
+	protected String questionData;
+
 	public LogGameCreated(String id) {
 		super();
 		this.id = id;
 	}
 
 	public LogGameCreated(String id, DataTopics topicId, String roomId,
-			SecurityUser userA, SecurityUser userB, Date createdDt,
-			Date updatedDt) {
+			SecurityUser userA, SecurityUser userB, String questionData,
+			Date createdDt, Date updatedDt) {
 		super();
 		this.id = id;
 		this.topicId = topicId;
 		this.roomId = roomId;
 		this.userA = userA;
 		this.userB = userB;
+		this.questionData = questionData;
 		this.createdDt = createdDt;
 		this.updatedDt = updatedDt;
 	}
@@ -108,4 +112,21 @@ public class LogGameCreated {
 	public void setUpdatedDt(Date updatedDt) {
 		this.updatedDt = updatedDt;
 	}
+
+	public String getQuestionData() {
+		return questionData;
+	}
+
+	public void setQuestionData(String questionData) {
+		this.questionData = questionData;
+	}
+
+	@Override
+	public String toString() {
+		return "LogGameCreated [id=" + id + ", topicId=" + topicId
+				+ ", roomId=" + roomId + ", userA=" + userA + ", userB="
+				+ userB + ", createdDt=" + createdDt + ", updatedDt="
+				+ updatedDt + ", questionData=" + questionData + "]";
+	}
+
 }
