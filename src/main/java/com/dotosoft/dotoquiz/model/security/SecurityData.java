@@ -2,8 +2,12 @@ package com.dotosoft.dotoquiz.model.security;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.dotosoft.dotoquiz.model.parameter.ParameterCountry;
@@ -13,13 +17,11 @@ import com.dotosoft.dotoquiz.model.parameter.ParameterCountry;
 public class SecurityData implements java.io.Serializable {
 
 	@Id
-	protected String userid;
+	@Column(name = "id", unique = true, nullable = false)
+	protected String id;
 	
 	@ManyToOne
 	protected ParameterCountry mtCountry;
-	
-	@ManyToOne
-	protected SecurityUser secUser;
 	
 	@Column(name="username", length=100)
 	protected String username;
@@ -35,18 +37,22 @@ public class SecurityData implements java.io.Serializable {
 	
 	@Column(name="exp")
 	protected Long exp;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
+	protected SecurityUser securityUser;
 
 	public SecurityData() {
 	}
 
-	public SecurityData(SecurityUser secUser) {
-		this.secUser = secUser;
+	public SecurityData(SecurityUser securityUser) {
+		this.securityUser = securityUser;
 	}
 
-	public SecurityData(ParameterCountry mtCountry, SecurityUser secUser, String username,
+	public SecurityData(ParameterCountry mtCountry, SecurityUser securityUser, String username,
 			String imageUrl, String title, Integer level, Long exp) {
 		this.mtCountry = mtCountry;
-		this.secUser = secUser;
+		this.securityUser = securityUser;
 		this.username = username;
 		this.imageUrl = imageUrl;
 		this.title = title;
@@ -54,12 +60,12 @@ public class SecurityData implements java.io.Serializable {
 		this.exp = exp;
 	}
 
-	public String getUserid() {
-		return this.userid;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public ParameterCountry getMtCountry() {
@@ -70,12 +76,12 @@ public class SecurityData implements java.io.Serializable {
 		this.mtCountry = mtCountry;
 	}
 
-	public SecurityUser getSecUser() {
-		return this.secUser;
+	public SecurityUser getSecurityUser() {
+		return this.securityUser;
 	}
 
-	public void setSecUser(SecurityUser secUser) {
-		this.secUser = secUser;
+	public void setSecurityUser(SecurityUser securityUser) {
+		this.securityUser = securityUser;
 	}
 
 	public String getUsername() {

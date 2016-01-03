@@ -2,8 +2,11 @@ package com.dotosoft.dotoquiz.model.security;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -11,10 +14,12 @@ import javax.persistence.Table;
 public class SecurityUserPass implements java.io.Serializable {
 
 	@Id
-	protected String userId;
-
+	@Column(name = "id", unique = true, nullable = false)
+	protected String id;
+	
 	@OneToOne
-	protected SecurityUser secUser;
+	@JoinColumn(name = "id")
+	protected SecurityUser securityUser;
 
 	@Column(name = "register_ip", length = 100)
 	protected String registerIp;
@@ -22,42 +27,38 @@ public class SecurityUserPass implements java.io.Serializable {
 	@Column(name = "refresh_token", length = 50)
 	protected String refreshToken;
 
-	@Column(name = "oauth_id", length = 50)
-	protected String oauthId;
-
 	@Column(name = "oauth_type", length = 50)
 	protected String oauthType;
 
 	public SecurityUserPass() {
 	}
 
-	public SecurityUserPass(SecurityUser secUser) {
-		this.secUser = secUser;
+	public SecurityUserPass(SecurityUser securityUser) {
+		this.securityUser = securityUser;
 	}
 
-	public SecurityUserPass(SecurityUser secUser, String oauthType,
-			String oauthId, String refreshToken, String registerIp) {
-		this.secUser = secUser;
+	public SecurityUserPass(SecurityUser securityUser, String oauthType,
+			String refreshToken, String registerIp) {
+		this.securityUser = securityUser;
 		this.oauthType = oauthType;
-		this.oauthId = oauthId;
 		this.refreshToken = refreshToken;
 		this.registerIp = registerIp;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(String id) {
+		this.id = id;
 	}
 
-	public SecurityUser getSecUser() {
-		return secUser;
+	public SecurityUser getSecurityUser() {
+		return securityUser;
 	}
 
-	public void setSecUser(SecurityUser secUser) {
-		this.secUser = secUser;
+	public void setSecurityUser(SecurityUser securityUser) {
+		this.securityUser = securityUser;
 	}
 
 	public String getRegisterIp() {
@@ -76,14 +77,6 @@ public class SecurityUserPass implements java.io.Serializable {
 		this.refreshToken = refreshToken;
 	}
 
-	public String getOauthId() {
-		return oauthId;
-	}
-
-	public void setOauthId(String oauthId) {
-		this.oauthId = oauthId;
-	}
-
 	public String getOauthType() {
 		return oauthType;
 	}
@@ -94,10 +87,9 @@ public class SecurityUserPass implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "SecurityUserPass [userId=" + userId + ", secUser=" + secUser
+		return "SecurityUserPass [id=" + id + ", securityUser=" + securityUser
 				+ ", registerIp=" + registerIp + ", refreshToken="
-				+ refreshToken + ", oauthId=" + oauthId + ", oauthType="
-				+ oauthType + "]";
+				+ refreshToken + ", oauthType=" + oauthType + "]";
 	}
 
 }

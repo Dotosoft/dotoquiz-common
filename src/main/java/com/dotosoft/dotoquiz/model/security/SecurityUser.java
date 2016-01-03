@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,6 +18,7 @@ import javax.persistence.Table;
 public class SecurityUser implements java.io.Serializable {
 
 	@Id
+	@Column(name = "id", unique = true, nullable = false)
 	protected String id;
 	
 	@Column(name="is_login", length=1)
@@ -33,10 +37,12 @@ public class SecurityUser implements java.io.Serializable {
 	protected Date updatedDt;
 	
 	@OneToOne
-	protected SecurityData secData;
+	@JoinColumn(name = "id", insertable=false, updatable=false)
+	private SecurityData securityData;
 	
 	@OneToOne
-	protected SecurityUserPass secUserPass;
+	@JoinColumn(name = "id", insertable=false, updatable=false)
+	private SecurityUserPass securityUserPass;
 
 	public SecurityUser() {
 	}
@@ -54,12 +60,12 @@ public class SecurityUser implements java.io.Serializable {
 		this.isDelete = isDelete;
 		this.createdDt = createdDt;
 		this.updatedDt = updatedDt;
-		this.secData = secData;
-		this.secUserPass = secUserPass;
+		this.securityData = secData;
+		this.securityUserPass = secUserPass;
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -106,20 +112,20 @@ public class SecurityUser implements java.io.Serializable {
 		this.updatedDt = updatedDt;
 	}
 
-	public SecurityData getSecData() {
-		return this.secData;
+	public SecurityData getSecurityData() {
+		return this.securityData;
 	}
 
-	public void setSecData(SecurityData secData) {
-		this.secData = secData;
+	public void setSecurityData(SecurityData securityData) {
+		this.securityData = securityData;
 	}
 
-	public SecurityUserPass getSecUserPass() {
-		return this.secUserPass;
+	public SecurityUserPass getSecurityUserPass() {
+		return this.securityUserPass;
 	}
 
-	public void setSecUserPass(SecurityUserPass secUserPass) {
-		this.secUserPass = secUserPass;
+	public void setSecurityUserPass(SecurityUserPass securityUserPass) {
+		this.securityUserPass = securityUserPass;
 	}
 
 }
