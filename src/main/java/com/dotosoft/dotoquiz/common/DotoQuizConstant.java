@@ -30,4 +30,8 @@ public class DotoQuizConstant {
 	
 	public static final String OAUTH_TYPE_GMAIL = "GMAIL";
 	public static final String OAUTH_TYPE_FACEBOOK = "FACEBOOK";
+	
+	public static final String GAME_STATUS_WIN = "WIN";
+	public static final String GAME_STATUS_LOSER = "LOSER";
+	public static final String GAME_STATUS_DRAW = "DRAW";
 }

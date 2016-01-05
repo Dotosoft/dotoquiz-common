@@ -15,6 +15,24 @@ import com.dotosoft.dotoquiz.model.security.SecurityUser;
 @Entity
 @Table(name = "log_stepPlay", catalog = "dotoquiz")
 public class LogStepPlay {
+	public LogStepPlay() {}
+	
+	public LogStepPlay(String id) {
+		this.id = id;
+	}
+
+	public LogStepPlay(String id, LogGameCreated logGameCreated,
+			SecurityUser userId, int answerTime, String answerData,
+			Date createdDt) {
+		super();
+		this.id = id;
+		this.logGameCreated = logGameCreated;
+		this.userId = userId;
+		this.answerTime = answerTime;
+		this.answerData = answerData;
+		this.createdDt = createdDt;
+	}
+
 	@Id
 	protected String id;
 
@@ -34,22 +52,6 @@ public class LogStepPlay {
 
 	@Column(name = "created_dt")
 	protected Date createdDt;
-
-	public LogStepPlay(String id) {
-		this.id = id;
-	}
-
-	public LogStepPlay(String id, LogGameCreated logGameCreated,
-			SecurityUser userId, int answerTime, String answerData,
-			Date createdDt) {
-		super();
-		this.id = id;
-		this.logGameCreated = logGameCreated;
-		this.userId = userId;
-		this.answerTime = answerTime;
-		this.answerData = answerData;
-		this.createdDt = createdDt;
-	}
 
 	public String getId() {
 		return id;
