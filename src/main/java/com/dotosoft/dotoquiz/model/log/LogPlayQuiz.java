@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -13,28 +14,27 @@ import com.dotosoft.dotoquiz.model.data.DataTopics;
 import com.dotosoft.dotoquiz.model.security.SecurityUser;
 
 @Entity
-@Table(name="log_playQuiz", catalog="dotoquiz")
+@Table(name = "log_playQuiz", catalog = "dotoquiz")
 public class LogPlayQuiz implements java.io.Serializable {
 
 	@Id
 	protected int id;
-	
-	@ManyToOne(targetEntity=SecurityUser.class, fetch=FetchType.EAGER)
-	protected SecurityUser secUser;
-	
-	@ManyToOne(targetEntity=DataTopics.class, fetch=FetchType.EAGER)
-	protected DataTopics datTopics;
-	
-	@Column(name="playDate", length=19)
-	protected Date playDate;
-	
-	@Column(name="status", length=100)
+
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	protected SecurityUser securityUser;
+
+	@ManyToOne
+	@JoinColumn(name = "gameId")
+	protected LogGameCreated logGameCreated;
+
+	@Column(name = "status", length = 100)
 	protected String status;
-	
-	@Column(name="reason")
+
+	@Column(name = "reason")
 	protected String reason;
-	
-	@Column(name="points")
+
+	@Column(name = "points")
 	protected Integer points;
 
 	public LogPlayQuiz() {
@@ -44,12 +44,12 @@ public class LogPlayQuiz implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public LogPlayQuiz(int id, SecurityUser secUser, DataTopics datTopics,
-			Date playDate, String status, String reason, Integer points) {
+	public LogPlayQuiz(int id, SecurityUser securityUser,
+			LogGameCreated logGameCreated, Date playDate, String status,
+			String reason, Integer points) {
 		this.id = id;
-		this.secUser = secUser;
-		this.datTopics = datTopics;
-		this.playDate = playDate;
+		this.securityUser = securityUser;
+		this.logGameCreated = logGameCreated;
 		this.status = status;
 		this.reason = reason;
 		this.points = points;
@@ -63,28 +63,20 @@ public class LogPlayQuiz implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public SecurityUser getSecUser() {
-		return this.secUser;
+	public SecurityUser getSecurityUser() {
+		return this.securityUser;
 	}
 
-	public void setSecUser(SecurityUser secUser) {
-		this.secUser = secUser;
+	public void setSecurityUser(SecurityUser securityUser) {
+		this.securityUser = securityUser;
 	}
 
-	public DataTopics getDatTopics() {
-		return this.datTopics;
+	public LogGameCreated getLogGameCreated() {
+		return logGameCreated;
 	}
 
-	public void setDatTopics(DataTopics sosTopics) {
-		this.datTopics = datTopics;
-	}
-
-	public Date getPlayDate() {
-		return this.playDate;
-	}
-
-	public void setPlayDate(Date playDate) {
-		this.playDate = playDate;
+	public void setLogGameCreated(LogGameCreated logGameCreated) {
+		this.logGameCreated = logGameCreated;
 	}
 
 	public String getStatus() {
@@ -109,6 +101,13 @@ public class LogPlayQuiz implements java.io.Serializable {
 
 	public void setPoints(Integer points) {
 		this.points = points;
+	}
+
+	@Override
+	public String toString() {
+		return "LogPlayQuiz [id=" + id + ", securityUser=" + securityUser
+				+ ", logGameCreated=" + logGameCreated + ", status=" + status
+				+ ", reason=" + reason + ", points=" + points + "]";
 	}
 
 }

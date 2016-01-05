@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,37 +19,36 @@ public class LogStepPlay {
 	protected String id;
 
 	@ManyToOne
-	protected LogGameCreated gameId;
+	@JoinColumn(name = "gameId")
+	protected LogGameCreated logGameCreated;
 
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser userId;
 
 	@Column(name = "answerTime")
 	protected int answerTime;
 
-	@Column(name = "answer")
-	protected int answer;
+	@Column(name = "answerdata")
+	protected String answerData;
 
 	@Column(name = "created_dt")
 	protected Date createdDt;
-
-	@Column(name = "created_by", length = 50)
-	protected String createdBy;
 
 	public LogStepPlay(String id) {
 		this.id = id;
 	}
 
-	public LogStepPlay(String id, LogGameCreated gameId, SecurityUser userId,
-			int answerTime, int answer, Date createdDt, String createdBy) {
+	public LogStepPlay(String id, LogGameCreated logGameCreated,
+			SecurityUser userId, int answerTime, String answerData,
+			Date createdDt) {
 		super();
 		this.id = id;
-		this.gameId = gameId;
+		this.logGameCreated = logGameCreated;
 		this.userId = userId;
 		this.answerTime = answerTime;
-		this.answer = answer;
+		this.answerData = answerData;
 		this.createdDt = createdDt;
-		this.createdBy = createdBy;
 	}
 
 	public String getId() {
@@ -59,12 +59,12 @@ public class LogStepPlay {
 		this.id = id;
 	}
 
-	public LogGameCreated getGameId() {
-		return gameId;
+	public LogGameCreated getGameCreated() {
+		return logGameCreated;
 	}
 
-	public void setGameId(LogGameCreated gameId) {
-		this.gameId = gameId;
+	public void setGameCreated(LogGameCreated gameId) {
+		this.logGameCreated = gameId;
 	}
 
 	public SecurityUser getUserId() {
@@ -83,12 +83,12 @@ public class LogStepPlay {
 		this.answerTime = answerTime;
 	}
 
-	public int getAnswer() {
-		return answer;
+	public String getAnswerdata() {
+		return answerData;
 	}
 
-	public void setAnswer(int answer) {
-		this.answer = answer;
+	public void setAnswerdata(String answerData) {
+		this.answerData = answerData;
 	}
 
 	public Date getCreatedDt() {
@@ -99,12 +99,12 @@ public class LogStepPlay {
 		this.createdDt = createdDt;
 	}
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+	@Override
+	public String toString() {
+		return "LogStepPlay [id=" + id + ", logGameCreated=" + logGameCreated
+				+ ", userId=" + userId + ", answerTime=" + answerTime
+				+ ", answerData=" + answerData + ", createdDt=" + createdDt
+				+ "]";
 	}
 
 }
