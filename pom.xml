@@ -14,6 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
+		<github.global.server>github</github.global.server>
 	</properties>
 
 	<dependencies>
@@ -73,7 +74,7 @@
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-		<repository>
+		<!-- <repository>
 			<id>dotoquiz-common</id>
 			<name>Dotoquiz Common Repository</name>
 			<url>https://github.com/Dotosoft/dotoquiz-common/raw/master/releases</url>
@@ -81,20 +82,27 @@
 		<snapshotRepository>
 			<id>snapshot-dotoquiz-common</id>
 			<url>https://github.com/Dotosoft/dotoquiz-common/raw/master/snapshots</url>
-		</snapshotRepository>
+		</snapshotRepository> -->
+    	<repository>
+        	<id>internal.repo</id>
+        	<name>Temporary Staging Repository</name>
+        	<url>file://${project.build.directory}/mvn-repo</url>
+    	</repository>
 	</distributionManagement>
 	
 	<build>
 		<plugins>
 			<plugin>
+        		<artifactId>maven-deploy-plugin</artifactId>
+        		<version>2.8.1</version>
+        		<configuration>
+            		<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+        		</configuration>
+    		</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -112,6 +120,29 @@
 						</filter>
 					</filters>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<configuration>
+					<message>Maven artifacts for ${project.version}</message>  						<!-- git commit message -->
+	                <noJekyll>true</noJekyll>                                  						<!-- disable webpage processing -->
+	                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> 			<!-- matches distribution management repository url above -->
+	                <branch>refs/heads/mvn-repo</branch>                       						<!-- remote branch name -->
+	                <includes><include>**/*</include></includes>
+	                <repositoryName>dotoquiz-common</repositoryName>      							<!-- github repo name -->
+	                <repositoryOwner>Dotosoft</repositoryOwner>    									<!-- github username  -->
+				</configuration>
+				<executions>
+              		<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+              		<execution>
+	                	<goals>
+	                  		<goal>site</goal>
+	                	</goals>
+	                	<phase>deploy</phase>
+              		</execution>
+            	</executions>
 			</plugin>
 		</plugins>
 		<finalName>${project.artifactId}-${project.version}</finalName>
