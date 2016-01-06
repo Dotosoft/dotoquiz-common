@@ -4,6 +4,15 @@ CREATE USER 'dotouser'@'localhost' IDENTIFIED BY 'dotopassword';
 GRANT ALL ON dotoquiz.* TO 'dotouser'@'localhost';
 USE `dotoquiz` ;
 
+-- phpMyAdmin SQL Dump
+-- version 4.1.12
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Jan 06, 2016 at 10:52 PM
+-- Server version: 5.5.34
+-- PHP Version: 5.5.10
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -82,13 +91,12 @@ CREATE TABLE `log_gameCreated` (
   `userB` varchar(50) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `updated_dt` datetime DEFAULT NULL,
+  `question_data` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_gamecreated_topic_idx` (`topicId`),
   KEY `fk_gamecreated_userA_idx` (`userA`),
   KEY `fk_gamecreated_userB_idx` (`userB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `log_playQuiz`
@@ -117,9 +125,8 @@ CREATE TABLE `log_stepPlay` (
   `gameId` varchar(50) DEFAULT NULL,
   `userId` varchar(50) DEFAULT NULL,
   `answertime` int(11) DEFAULT NULL,
-  `answer` int(11) DEFAULT NULL,
+  `answerdata` text,
   `created_dt` datetime DEFAULT NULL,
-  `created_by` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_step_gameCreated_idx` (`gameId`),
   KEY `fk_step_user_idx` (`userId`)
@@ -135,20 +142,21 @@ CREATE TABLE `mt_achievements` (
   `id` varchar(50) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `description` text,
-  `image_url` varchar(200) DEFAULT NULL,
+  `image_url` varchar(1000) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `created_by` varchar(50) DEFAULT NULL,
+  `picasaId` varchar(50) DEFAULT NULL,
+  `image_picasa_url` varchar(1000) DEFAULT NULL,
+  `is_delete` varchar(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `mt_country`
 --
 
 CREATE TABLE `mt_country` (
-  `id` varchar(2) NOT NULL DEFAULT '',
+  `id` varchar(2) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `url` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `latitude` double NOT NULL,
@@ -177,18 +185,16 @@ CREATE TABLE `mt_question_type` (
 --
 
 CREATE TABLE `sec_data` (
-  `userid` varchar(50) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `image_url` varchar(200) DEFAULT NULL,
-  `country` varchar(2) CHARACTER SET utf8 DEFAULT NULL,
+  `mtCountry_id` varchar(2) DEFAULT NULL,
   `title` varchar(200) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `exp` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`userid`),
-  KEY `fk_data_country_idx` (`country`)
+  PRIMARY KEY (`id`),
+  KEY `fk_data_country_idx` (`mtCountry_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `sec_user`
@@ -204,22 +210,17 @@ CREATE TABLE `sec_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Table structure for table `sec_user_pass`
 --
 
 CREATE TABLE `sec_user_pass` (
-  `userId` varchar(50) NOT NULL,
-  `oauth_type` varchar(45) DEFAULT NULL,
-  `oauth_id` varchar(45) DEFAULT NULL,
-  `oauth_secret` varchar(45) DEFAULT NULL,
+  `id` varchar(50) NOT NULL,
   `register_ip` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`userId`)
+  `refresh_token` varchar(45) DEFAULT NULL,
+  `oauth_type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `sos_friends`
@@ -417,14 +418,13 @@ ALTER TABLE `log_stepPlay`
 -- Constraints for table `sec_data`
 --
 ALTER TABLE `sec_data`
-  ADD CONSTRAINT `fk_data_country` FOREIGN KEY (`country`) REFERENCES `mt_country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_data_user` FOREIGN KEY (`userid`) REFERENCES `sec_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_data_user` FOREIGN KEY (`id`) REFERENCES `sec_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `sec_user_pass`
 --
 ALTER TABLE `sec_user_pass`
-  ADD CONSTRAINT `fk_user_pass` FOREIGN KEY (`userId`) REFERENCES `sec_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_user_pass` FOREIGN KEY (`id`) REFERENCES `sec_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `sos_friends`

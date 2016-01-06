@@ -30,6 +30,10 @@ INSERT INTO `mt_question_type` (`id`, `created_by`, `created_dt`, `description`,
 
 -- --------------------------------------------------------
 
+--
+-- Dumping data for table `mt_country`
+--
+
 INSERT INTO `mt_country` (`id`, `url`, `name`, `latitude`, `longitude`) VALUES
 ('', '', 'Saint Barthlemy', 0, 0),
 ('AD', 'andorra', 'Andorra', 42.5, 1.5),
@@ -277,3 +281,5 @@ INSERT INTO `mt_country` (`id`, `url`, `name`, `latitude`, `longitude`) VALUES
 ('ZA', 'south-africa', 'South Africa\r\n', -29, 24),
 ('ZM', 'zambia', 'Zambia\r\n', -15, 30),
 ('ZW', 'zimbabwe', 'Zimbabwe', -20, 30);
+
+-- --------------------------------------------------------
