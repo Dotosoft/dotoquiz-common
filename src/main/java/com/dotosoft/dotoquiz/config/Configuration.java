@@ -72,6 +72,7 @@ public class Configuration {
 	@Override
 	public String toString() {
 		return new StringBuilder()
+				.append("Setting Configurations:\n")
 				.append(format("Dialect: %s\n", dialect))
 				.append(format("hbm2ddl: %s\n", hbm2ddl))
 				.append(format("show_sql: %s\n", showSQL))
