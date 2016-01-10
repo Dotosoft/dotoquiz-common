@@ -40,7 +40,7 @@ public class DataTopics implements java.io.Serializable {
 	@Column(name = "name", length = 100)
 	protected String name;
 
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition="TEXT")
 	protected String description;
 
 	@Column(name = "image_url", length = 200)

@@ -47,7 +47,7 @@ public class LogStepPlay {
 	@Column(name = "answerTime")
 	protected int answerTime;
 
-	@Column(name = "answerdata")
+	@Column(name = "answerdata", columnDefinition="TEXT")
 	protected String answerData;
 
 	@Column(name = "created_dt")

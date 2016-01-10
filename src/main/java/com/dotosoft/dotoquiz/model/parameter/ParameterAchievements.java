@@ -42,7 +42,7 @@ public class ParameterAchievements implements java.io.Serializable {
 	@Column(name = "name")
 	protected String name;
 
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition="TEXT")
 	protected String description;
 
 	@Column(name = "is_delete")

@@ -25,7 +25,7 @@ public class SocialPostings implements java.io.Serializable {
 	@Column(name="title", length=100)
 	protected String title;
 	
-	@Column(name="description")
+	@Column(name="description", columnDefinition="TEXT")
 	protected String description;
 	
 	@Column(name="image_url", length=200)

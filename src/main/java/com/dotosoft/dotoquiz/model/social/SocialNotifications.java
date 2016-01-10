@@ -17,7 +17,7 @@ public class SocialNotifications implements java.io.Serializable {
 	@Id
 	protected String id;
 	
-	@Column(name="message")
+	@Column(name="message", columnDefinition="TEXT")
 	protected String message;
 	
 	@Column(name="is_delete", length=1)

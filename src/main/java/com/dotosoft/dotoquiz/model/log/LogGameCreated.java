@@ -39,7 +39,7 @@ public class LogGameCreated {
 	@Column(name = "updated_dt")
 	protected Date updatedDt;
 
-	@Column(name = "question_data")
+	@Column(name = "question_data", columnDefinition="TEXT")
 	protected String questionData;
 
 	public LogGameCreated(String id) {

@@ -31,7 +31,7 @@ public class LogPlayQuiz implements java.io.Serializable {
 	@Column(name = "status", length = 100)
 	protected String status;
 
-	@Column(name = "reason")
+	@Column(name = "reason", columnDefinition="TEXT")
 	protected String reason;
 
 	@Column(name = "points")

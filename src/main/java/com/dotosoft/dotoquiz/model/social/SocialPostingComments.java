@@ -23,7 +23,7 @@ public class SocialPostingComments implements java.io.Serializable {
 	@ManyToOne
 	protected SocialPostings sosPostings;
 	
-	@Column(name="comments")
+	@Column(name="comments", columnDefinition="TEXT")
 	protected String comments;
 	
 	@Column(name="created_dt", length=19)
