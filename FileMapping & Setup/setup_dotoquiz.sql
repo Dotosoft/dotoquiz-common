@@ -27,19 +27,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dat_questions` (
-  `id` varchar(255) NOT NULL,
-  `correct_answer` varchar(255) DEFAULT NULL,
-  `created_by` varchar(255) DEFAULT NULL,
+  `id` varchar(50) NOT NULL,
+  `correct_answer` varchar(500) DEFAULT NULL,
+  `created_by` varchar(50) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
-  `is_delete` varchar(255) DEFAULT NULL,
-  `question` varchar(255) DEFAULT NULL,
-  `wrong_answer1` varchar(255) DEFAULT NULL,
-  `wrong_answer2` varchar(255) DEFAULT NULL,
-  `wrong_answer3` varchar(255) DEFAULT NULL,
-  `mtQuestionType_id` varchar(255) DEFAULT NULL,
+  `is_delete` varchar(1) DEFAULT NULL,
+  `question` text DEFAULT NULL,
+  `wrong_answer1` varchar(500) DEFAULT NULL,
+  `wrong_answer2` varchar(500) DEFAULT NULL,
+  `wrong_answer3` varchar(500) DEFAULT NULL,
+  `mtQuestionType_id` varchar(50) DEFAULT NULL,
   `picasaId` varchar(100) DEFAULT NULL,
-  `imagePicasaUrl` varchar(1000) DEFAULT NULL,
-  `additionalData` varchar(1000) DEFAULT NULL,
+  `imagePicasaUrl` text DEFAULT NULL,
+  `additionalData` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_s2meoyq57rxdm288w6bbxejnk` (`mtQuestionType_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -58,7 +58,7 @@ CREATE TABLE `dat_topics` (
   `created_by` varchar(50) DEFAULT NULL,
   `datTopics_id` varchar(50) DEFAULT NULL,
   `picasaId` varchar(100) DEFAULT NULL,
-  `imagePicasaUrl` varchar(1000) DEFAULT NULL,
+  `imagePicasaUrl` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_topic_parent_idx` (`datTopics_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -142,11 +142,11 @@ CREATE TABLE `mt_achievements` (
   `id` varchar(50) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `description` text,
-  `image_url` varchar(1000) DEFAULT NULL,
+  `image_url` text DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `created_by` varchar(50) DEFAULT NULL,
-  `picasaId` varchar(50) DEFAULT NULL,
-  `image_picasa_url` varchar(1000) DEFAULT NULL,
+  `picasaId` varchar(100) DEFAULT NULL,
+  `image_picasa_url` text DEFAULT NULL,
   `is_delete` varchar(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -171,12 +171,12 @@ CREATE TABLE `mt_country` (
 --
 
 CREATE TABLE `mt_question_type` (
-  `id` varchar(255) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `created_by` varchar(50) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `is_delete` varchar(1) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -187,7 +187,7 @@ CREATE TABLE `mt_question_type` (
 CREATE TABLE `sec_data` (
   `id` varchar(50) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
-  `image_url` varchar(200) DEFAULT NULL,
+  `image_url` text DEFAULT NULL,
   `mtCountry_id` varchar(2) DEFAULT NULL,
   `title` varchar(200) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
@@ -217,8 +217,8 @@ CREATE TABLE `sec_user` (
 CREATE TABLE `sec_user_pass` (
   `id` varchar(50) NOT NULL,
   `register_ip` varchar(100) DEFAULT NULL,
-  `refresh_token` varchar(45) DEFAULT NULL,
-  `oauth_type` varchar(45) DEFAULT NULL,
+  `refresh_token` varchar(100) DEFAULT NULL,
+  `oauth_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -280,7 +280,7 @@ CREATE TABLE `sos_postings` (
   `userId` varchar(50) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `description` text,
-  `image_url` varchar(200) DEFAULT NULL,
+  `image_url` text DEFAULT NULL,
   `is_delete` varchar(1) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `created_by` varchar(50) DEFAULT NULL,

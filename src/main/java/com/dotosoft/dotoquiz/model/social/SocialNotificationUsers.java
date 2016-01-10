@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,15 +19,17 @@ public class SocialNotificationUsers implements java.io.Serializable {
 	protected String id;
 	
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser secUser;
 	
 	@ManyToOne
+	@JoinColumn(name = "notificationId")
 	protected SocialNotifications sosNotifications;
 	
 	@Column(name="isRead", length=1)
 	protected String isRead;
 	
-	@Column(name="updated_dt", length=19)
+	@Column(name="updated_dt", columnDefinition="DATETIME")
 	protected Date updatedDt;
 	
 	@Column(name="updated_by", length=50)

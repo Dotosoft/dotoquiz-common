@@ -33,10 +33,10 @@ public class LogGameCreated {
 	@JoinColumn(name="userB")
 	protected SecurityUser userB;
 
-	@Column(name = "created_dt")
+	@Column(name = "created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
-	@Column(name = "updated_dt")
+	@Column(name = "updated_dt", columnDefinition="DATETIME")
 	protected Date updatedDt;
 
 	@Column(name = "question_data", columnDefinition="TEXT")

@@ -2,6 +2,7 @@ package com.dotosoft.dotoquiz.model.social;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -13,32 +14,34 @@ import com.dotosoft.dotoquiz.model.security.SecurityUser;
 public class SocialTopicLikes implements java.io.Serializable {
 
 	@Id
-	protected int id;
+	protected String id;
 	
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser secUser;
 	
 	@ManyToOne
+	@JoinColumn(name = "topicId")
 	protected DataTopics datTopics;
 
 	public SocialTopicLikes() {
 	}
 
-	public SocialTopicLikes(int id) {
+	public SocialTopicLikes(String id) {
 		this.id = id;
 	}
 
-	public SocialTopicLikes(int id, SecurityUser secUser, DataTopics datTopics) {
+	public SocialTopicLikes(String id, SecurityUser secUser, DataTopics datTopics) {
 		this.id = id;
 		this.secUser = secUser;
 		this.datTopics = datTopics;
 	}
 
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

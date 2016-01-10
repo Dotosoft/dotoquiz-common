@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,6 +21,7 @@ public class SocialPostings implements java.io.Serializable {
 	protected String id;
 	
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser secUser;
 	
 	@Column(name="title", length=100)
@@ -28,13 +30,13 @@ public class SocialPostings implements java.io.Serializable {
 	@Column(name="description", columnDefinition="TEXT")
 	protected String description;
 	
-	@Column(name="image_url", length=200)
+	@Column(name="image_url", columnDefinition="TEXT")
 	protected String imageUrl;
 	
 	@Column(name="is_delete", length=1)
 	protected String isDelete;
 	
-	@Column(name="created_dt", length=19)
+	@Column(name="created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 	
 	@Column(name="created_by", length=50)

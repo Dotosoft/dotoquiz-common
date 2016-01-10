@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,15 +19,17 @@ public class SocialPostingLikes implements java.io.Serializable {
 	protected String id;
 	
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser secUser;
 	
 	@ManyToOne
+	@JoinColumn(name = "postingId")
 	protected SocialPostings sosPostings;
 	
 	@Column(name="is_delete", length=1)
 	protected String isDelete;
 	
-	@Column(name="created_dt", length=19)
+	@Column(name="created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	public SocialPostingLikes() {

@@ -30,10 +30,10 @@ public class SecurityUser implements java.io.Serializable {
 	@Column(name="is_delete", length=1)
 	protected String isDelete;
 	
-	@Column(name="created_dt", length=19)
+	@Column(name="created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 	
-	@Column(name="updated_dt", length=19)
+	@Column(name="updated_dt", columnDefinition="DATETIME")
 	protected Date updatedDt;
 	
 	@OneToOne

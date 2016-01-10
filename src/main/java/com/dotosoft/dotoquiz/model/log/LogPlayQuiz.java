@@ -18,7 +18,7 @@ import com.dotosoft.dotoquiz.model.security.SecurityUser;
 public class LogPlayQuiz implements java.io.Serializable {
 
 	@Id
-	protected int id;
+	protected String id;
 
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -34,17 +34,17 @@ public class LogPlayQuiz implements java.io.Serializable {
 	@Column(name = "reason", columnDefinition="TEXT")
 	protected String reason;
 
-	@Column(name = "points")
+	@Column(name = "points", columnDefinition="INTEGER")
 	protected Integer points;
 
 	public LogPlayQuiz() {
 	}
 
-	public LogPlayQuiz(int id) {
+	public LogPlayQuiz(String id) {
 		this.id = id;
 	}
 
-	public LogPlayQuiz(int id, SecurityUser securityUser,
+	public LogPlayQuiz(String id, SecurityUser securityUser,
 			LogGameCreated logGameCreated, Date playDate, String status,
 			String reason, Integer points) {
 		this.id = id;
@@ -55,11 +55,11 @@ public class LogPlayQuiz implements java.io.Serializable {
 		this.points = points;
 	}
 
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

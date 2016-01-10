@@ -31,7 +31,7 @@ public class DataTopics implements java.io.Serializable {
 	@Column(name = "picasaId", length = 100)
 	protected String picasaId;
 
-	@Column(name = "imagePicasaUrl", length = 1000)
+	@Column(name = "imagePicasaUrl", columnDefinition="TEXT")
 	protected String imagePicasaUrl;
 
 	@ManyToOne
@@ -49,7 +49,7 @@ public class DataTopics implements java.io.Serializable {
 	@Column(name = "is_delete", length = 1)
 	protected String isDelete;
 
-	@Column(name = "created_dt", length = 19)
+	@Column(name = "created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	@Column(name = "created_by", length = 50)

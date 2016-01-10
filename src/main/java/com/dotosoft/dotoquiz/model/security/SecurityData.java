@@ -26,16 +26,16 @@ public class SecurityData implements java.io.Serializable {
 	@Column(name="username", length=100)
 	protected String username;
 	
-	@Column(name="image_url", length=200)
+	@Column(name="image_url", columnDefinition="TEXT")
 	protected String imageUrl;
 	
 	@Column(name="title", length=200)
 	protected String title;
 	
-	@Column(name="level")
+	@Column(name="level", columnDefinition="INTEGER")
 	protected Integer level;
 	
-	@Column(name="exp")
+	@Column(name="exp", columnDefinition="BIGINTEGER")
 	protected Long exp;
 	
 	@OneToOne

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,12 +19,14 @@ public class SocialFriends implements java.io.Serializable {
 	protected String id;
 	
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser secUserByUserId;
 	
 	@ManyToOne
+	@JoinColumn(name = "friendId")
 	protected SecurityUser secUserByFriendId;
 	
-	@Column(name="created_dt", length=19)
+	@Column(name="created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	public SocialFriends() {

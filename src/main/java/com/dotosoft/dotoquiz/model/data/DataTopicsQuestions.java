@@ -32,10 +32,10 @@ public class DataTopicsQuestions implements java.io.Serializable {
 	@ManyToOne
 	protected DataTopics datTopics;
 
-	@Column(name = "is_delete")
+	@Column(name = "is_delete", length=1)
 	protected String isDelete;
 
-	@Column(name = "created_dt")
+	@Column(name = "created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	@Column(name = "created_by")

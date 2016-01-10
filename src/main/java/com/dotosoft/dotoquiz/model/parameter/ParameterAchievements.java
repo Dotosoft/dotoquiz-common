@@ -45,19 +45,19 @@ public class ParameterAchievements implements java.io.Serializable {
 	@Column(name = "description", columnDefinition="TEXT")
 	protected String description;
 
-	@Column(name = "is_delete")
+	@Column(name = "is_delete", length=1)
 	protected String isDelete;
 
-	@Column(name = "image_url")
+	@Column(name = "image_url", columnDefinition="TEXT")
 	protected String imageUrl;
 
-	@Column(name = "image_picasa_url")
+	@Column(name = "image_picasa_url", columnDefinition="TEXT")
 	protected String imagePicasaUrl;
 
 	@Column(name = "picasaId")
 	protected String picasaId;
 
-	@Column(name = "created_dt")
+	@Column(name = "created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	@Column(name = "created_by")

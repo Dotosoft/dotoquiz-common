@@ -31,10 +31,10 @@ public class ParameterCountry implements java.io.Serializable {
 	@Column(name = "name", length = 50)
 	protected String name;
 
-	@Column(name = "latitude")
+	@Column(name = "latitude", columnDefinition="DOUBLE")
 	protected double latitude;
 
-	@Column(name = "longitude")
+	@Column(name = "longitude", columnDefinition="DOUBLE")
 	protected double longitude;
 
 	public ParameterCountry() {

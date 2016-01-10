@@ -44,13 +44,13 @@ public class LogStepPlay {
 	@JoinColumn(name = "userId")
 	protected SecurityUser userId;
 
-	@Column(name = "answerTime")
+	@Column(name = "answerTime", columnDefinition="INTEGER")
 	protected int answerTime;
 
 	@Column(name = "answerdata", columnDefinition="TEXT")
 	protected String answerData;
 
-	@Column(name = "created_dt")
+	@Column(name = "created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	public String getId() {

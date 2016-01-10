@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,12 +19,14 @@ public class SocialUserFollow implements java.io.Serializable {
 	protected String id;
 	
 	@ManyToOne
+	@JoinColumn(name = "followerId")
 	protected SecurityUser secUserByFollowerId;
 	
 	@ManyToOne
+	@JoinColumn(name = "userId")
 	protected SecurityUser secUserByUserId;
 	
-	@Column(name="followDate", length=19)
+	@Column(name="followDate", columnDefinition="DATETIME")
 	protected Date followDate;
 
 	public SocialUserFollow() {

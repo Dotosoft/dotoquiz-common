@@ -43,13 +43,13 @@ public class DataQuestions implements java.io.Serializable {
 	@Column(name = "picasaId", length = 100)
 	protected String picasaId;
 
-	@Column(name = "imagePicasaUrl", length = 1000)
+	@Column(name = "imagePicasaUrl", columnDefinition="TEXT")
 	protected String imagePicasaUrl;
 
-	@Column(name = "additionalData", length = 1000)
+	@Column(name = "additionalData", columnDefinition="TEXT")
 	protected String additionalData;
 
-	@Column(name = "question")
+	@Column(name = "question", columnDefinition="TEXT")
 	protected String question;
 
 	@Column(name = "is_delete")
@@ -67,7 +67,7 @@ public class DataQuestions implements java.io.Serializable {
 	@Column(name = "wrong_answer3")
 	protected String wrongAnswer3;
 
-	@Column(name = "created_dt")
+	@Column(name = "created_dt", columnDefinition="DATETIME")
 	protected Date createdDt;
 
 	@Column(name = "created_by")
