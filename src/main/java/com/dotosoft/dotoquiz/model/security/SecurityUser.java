@@ -10,10 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name="security#user.getSecurityUserByUsernameAndToken", query="FROM SecurityUser user WHERE user.isDelete = 'N' AND user.securityData.username=:userName AND user.securityUserPass.refreshToken = :refreshToken"),
+@NamedQuery(name="security#user.getSecurityUserByUsername", query="FROM SecurityUser user WHERE user.isDelete = 'N' AND user.securityData.username=:userName")
+})
+
 @Table(name="sec_user", catalog="dotoquiz")
 public class SecurityUser implements java.io.Serializable {
 

@@ -6,9 +6,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedNativeQueries({
+	@NamedNativeQuery(name="quiz#questions.getByTopicId", query="SELECT topicQuestions.datQuestions FROM DataTopicsQuestions topicQuestions WHERE topicQuestions.datQuestions.isDelete = 'N' AND topicQuestions.datTopics.id = :topicId"),
+	@NamedNativeQuery(name="quiz#questions.getRandomByTopicId", query="SELECT * FROM dat_topics_questions p where p.datTopics_id = :topicId ORDER BY RAND() LIMIT :limit"),
+})
+@NamedQueries({
+	@NamedQuery(name="quiz#questions.findByQuestionId", query="FROM DataTopicsQuestions WHERE datQuestions.id = :questionId"),
+	@NamedQuery(name="quiz#achievements.getALL", query="FROM ParameterAchievements WHERE isDelete = 'N'"),
+	@NamedQuery(name="quiz#topics.getALL", query="FROM DataTopics WHERE isDelete = 'N'"),
+	@NamedQuery(name="quiz#loggamequiz.findByGameAndUser", query="FROM LogPlayQuiz log WHERE log.logGameCreated.id = :gameId and log.securityUser.id = :userId"),
+})
 @Table(name = "dat_topics", catalog = "dotoquiz")
 public class DataTopics implements java.io.Serializable {
 	public DataTopics(String id, String picasaId, String imagePicasaUrl,

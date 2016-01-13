@@ -37,5 +37,7 @@ public class QuizConstant {
 	public static final String GAME_STATUS_LOSER = "LOSER";
 	public static final String GAME_STATUS_DRAW = "DRAW";
 	
+	public static final String TITLE_DEFAULT_PLAYER = "Novice";
+	
 	public static Locale DEFAULT_LOCALE = Locale.ENGLISH;
 }
