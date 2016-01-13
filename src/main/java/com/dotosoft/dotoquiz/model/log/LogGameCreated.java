@@ -15,31 +15,34 @@ import com.dotosoft.dotoquiz.model.security.SecurityUser;
 @Entity
 @Table(name = "log_gameCreated", catalog = "dotoquiz")
 public class LogGameCreated {
+	public LogGameCreated() {
+	}
+
 	@Id
 	protected String id;
 
 	@ManyToOne
-	@JoinColumn(name="topicId")
+	@JoinColumn(name = "topicId")
 	protected DataTopics topicId;
 
 	@Column(name = "roomId", length = 50)
 	protected String roomId;
 
 	@ManyToOne
-	@JoinColumn(name="userA")
+	@JoinColumn(name = "userA")
 	protected SecurityUser userA;
 
 	@ManyToOne
-	@JoinColumn(name="userB")
+	@JoinColumn(name = "userB")
 	protected SecurityUser userB;
 
-	@Column(name = "created_dt", columnDefinition="DATETIME")
+	@Column(name = "created_dt", columnDefinition = "DATETIME")
 	protected Date createdDt;
 
-	@Column(name = "updated_dt", columnDefinition="DATETIME")
+	@Column(name = "updated_dt", columnDefinition = "DATETIME")
 	protected Date updatedDt;
 
-	@Column(name = "question_data", columnDefinition="TEXT")
+	@Column(name = "question_data", columnDefinition = "TEXT")
 	protected String questionData;
 
 	public LogGameCreated(String id) {
