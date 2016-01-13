@@ -30,7 +30,7 @@ public class LabelUtilTest extends TestCase {
      */
     public void testLabelUtil()
     {
-    	String label = "s2";
+    	String label = "com.dotoquiz.common.err.match.closed";
     	System.out.println(LabelUtils.getLabel(label));
     	System.out.println(LabelUtils.getLabel(Locale.FRENCH, "common", label));
     	System.out.println(LabelUtils.getLabel(Locale.GERMAN, "common", label));
