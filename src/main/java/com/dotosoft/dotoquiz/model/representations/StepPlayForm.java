@@ -1,5 +1,10 @@
 package com.dotosoft.dotoquiz.model.representations;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class StepPlayForm {
 	public StepPlayForm(String gameId, String questionId,
 			String questionAnswer, int answerTime) {
@@ -9,9 +14,18 @@ public class StepPlayForm {
 		this.answerTime = answerTime;
 	}
 
+	@NotEmpty // ensure that name isn't null or blank
 	protected String gameId;
+	
+	@NotEmpty // ensure that name isn't null or blank
 	protected String questionId;
+	
+	@NotEmpty // ensure that name isn't null or blank
 	protected String questionAnswer;
+	
+	@NotEmpty // ensure that name isn't null or blank
+	@Max(20)
+    @Min(0)
 	protected int answerTime;
 
 	public String getGameId() {

@@ -1,5 +1,7 @@
 package com.dotosoft.dotoquiz.model.representations;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.dotosoft.dotoquiz.model.data.DataQuestions;
 
 public class AnswerData {
@@ -8,6 +10,7 @@ public class AnswerData {
 		this.dataQuestion = dataQuestion;
 	}
 
+	@NotEmpty // ensure that name isn't null or blank
 	protected String questionAnswer;
 	protected DataQuestions dataQuestion;
 

@@ -1,5 +1,7 @@
 package com.dotosoft.dotoquiz.model.representations;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ResultPlayForm {
 	public ResultPlayForm() {
 	}
@@ -12,8 +14,12 @@ public class ResultPlayForm {
 		this.points = points;
 	}
 
+	@NotEmpty // ensure that name isn't null or blank
 	protected String gameId;
+	
+	@NotEmpty // ensure that name isn't null or blank
 	protected String status;
+	
 	protected String reason;
 	protected int points;
 

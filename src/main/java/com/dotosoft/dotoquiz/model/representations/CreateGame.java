@@ -2,6 +2,8 @@ package com.dotosoft.dotoquiz.model.representations;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.dotosoft.dotoquiz.model.data.DataQuestions;
 
 public class CreateGame {
@@ -10,7 +12,9 @@ public class CreateGame {
 		this.questionCollections = questionCollections;
 	}
 
+	@NotEmpty // ensure that name isn't null or blank
 	protected String sessionId;
+	
 	protected List<DataQuestions> questionCollections;
 
 	public String getSessionId() {
