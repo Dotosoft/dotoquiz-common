@@ -26,7 +26,13 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class FileUtils {
+	
+	private static final Logger log = LogManager.getLogger(FileUtils.class.getName());
+	
 	public static Path getPath(String rootFolder, String folder, String file) {
 		Path returnPath = Paths.get(rootFolder, folder, file);
 		return returnPath;
@@ -57,6 +63,8 @@ public class FileUtils {
 				return true;
 			}
 			
+			log.info("Download " + urlPath + " to local('" + saveToFile + "')");
+			
 			URL url = new URL(urlPath);
 			InputStream in = new BufferedInputStream(url.openStream());
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -69,6 +77,12 @@ public class FileUtils {
 			out.close();
 			in.close();
 			byte[] response = out.toByteArray();
+			
+			if(!checkfileExist.getParentFile().exists()) {
+				if(checkfileExist.getParentFile().mkdirs()) {
+					log.info("Create folder at '" + checkfileExist.getParent() + "'");
+				}
+			}
 			
 			FileOutputStream fos = new FileOutputStream(saveToFile);
 			fos.write(response);
