@@ -16,8 +16,13 @@
 
 package com.dotosoft.dotoquiz.utils;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -44,4 +49,36 @@ public class FileUtils {
 
         return false;
     }
+	
+	public static boolean downloadFileToLocal( String urlPath, String saveToFile, boolean isReplaced ) {
+		try {
+			File checkfileExist = new File(saveToFile);
+			if(checkfileExist.exists() && !isReplaced) {
+				return true;
+			}
+			
+			URL url = new URL(urlPath);
+			InputStream in = new BufferedInputStream(url.openStream());
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+			int n = 0;
+			while (-1!=(n=in.read(buf)))
+			{
+			   out.write(buf, 0, n);
+			}
+			out.close();
+			in.close();
+			byte[] response = out.toByteArray();
+			
+			FileOutputStream fos = new FileOutputStream(saveToFile);
+			fos.write(response);
+			fos.close();
+			
+			return true;
+		} catch ( Exception ex ) {
+			ex.printStackTrace();
+		}
+		
+		return false;
+	}
 }
