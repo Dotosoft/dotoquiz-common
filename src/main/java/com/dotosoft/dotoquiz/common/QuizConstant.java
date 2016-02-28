@@ -19,6 +19,8 @@ package com.dotosoft.dotoquiz.common;
 import java.util.Locale;
 
 public class QuizConstant {
+	public static final String EMPTY_STRING = "";
+	
 	public static final String YES = "Y";
 	public static final String NO = "N";
 	public static final String SYSTEM_USER = "system";
