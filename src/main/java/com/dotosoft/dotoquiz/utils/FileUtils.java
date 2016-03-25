@@ -56,11 +56,21 @@ public class FileUtils {
         return false;
     }
 	
+	public static boolean downloadFileToLocal( String urlPath, Path saveToFile, boolean isReplaced ) {
+		return downloadFileToLocal(urlPath, saveToFile.toString(), isReplaced);
+	}
+	
 	public static boolean downloadFileToLocal( String urlPath, String saveToFile, boolean isReplaced ) {
 		try {
 			File checkfileExist = new File(saveToFile);
 			if(checkfileExist.exists() && !isReplaced) {
 				return true;
+			}
+			
+			if(!checkfileExist.getParentFile().exists()) {
+				if(checkfileExist.getParentFile().mkdirs()) {
+					log.info("Create folder at " + checkfileExist.getParentFile());
+				}
 			}
 			
 			log.info("Download " + urlPath + " to local('" + saveToFile + "')");
