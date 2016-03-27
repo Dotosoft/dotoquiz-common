@@ -56,11 +56,11 @@ public class FileUtils {
         return false;
     }
 	
-	public static boolean downloadFileToLocal( String urlPath, Path saveToFile, boolean isReplaced ) {
+	public static boolean downloadFileToLocal( String urlPath, Path saveToFile, Boolean isReplaced ) {
 		return downloadFileToLocal(urlPath, saveToFile.toString(), isReplaced);
 	}
 	
-	public static boolean downloadFileToLocal( String urlPath, String saveToFile, boolean isReplaced ) {
+	public static boolean downloadFileToLocal( String urlPath, String saveToFile, Boolean isReplaced ) {
 		try {
 			File checkfileExist = new File(saveToFile);
 			if(checkfileExist.exists() && !isReplaced) {
