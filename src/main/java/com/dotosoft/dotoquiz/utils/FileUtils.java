@@ -100,7 +100,8 @@ public class FileUtils {
 			
 			return true;
 		} catch ( Exception ex ) {
-			ex.printStackTrace();
+			// ex.printStackTrace();
+			log.error(ex.getMessage());
 		}
 		
 		return false;
